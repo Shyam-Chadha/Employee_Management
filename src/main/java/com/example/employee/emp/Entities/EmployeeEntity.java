@@ -17,7 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class EmployeeEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String firstName;
     private String lastName;
@@ -25,6 +25,6 @@ public class EmployeeEntity {
     private String email;
     private String phoneNumber;
     private String address;
-    private String Designation;
-    private int DepartmentNumber;
+    private String designation;
+    private int departmentNumber;
 }
