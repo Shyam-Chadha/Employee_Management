@@ -13,7 +13,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeDTO {
-//    @NotNull(message = "Id is required")
     private UUID id;
     @NotBlank(message = "First Name is required")
     private String firstName;
