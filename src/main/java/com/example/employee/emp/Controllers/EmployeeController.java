@@ -47,4 +47,41 @@ public class EmployeeController {
         List<EmployeeDTO> employees = employeeService.getAllEmployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
+
+    @GetMapping("/{employeeId}")
+    public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable String employeeId) {
+        UUID uuid = UUID.fromString(employeeId);
+        return employeeService.getEmployeeById(uuid);
+    }
+
+    @PutMapping("/update/{employeeId}")
+    public ResponseEntity<String> updateEmployee(@PathVariable String employeeId, @RequestBody @Valid EmployeeDTO employeeDTO){
+
+        UUID uuid = UUID.fromString(employeeId);
+        if(employeeService.updateEmployee(uuid, employeeDTO)){
+            return new ResponseEntity<>("Details updated successfully", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Either employeeID is wrong or some other error occurred", HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<EmployeeDTO>> searchEmployees(@RequestParam(required = false) String firstName, @RequestParam(required = false) Integer departmentNumber) {
+        List<EmployeeDTO> employees = employeeService.searchEmployees(firstName, departmentNumber);
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+    @GetMapping("/active")
+    public ResponseEntity<List<EmployeeDTO>> getEmployeesByStatus() {
+        List<EmployeeDTO> employees = employeeService.getActiveEmployees();
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
+
+    @PatchMapping("/changeStatus/{employeeId}")
+    public ResponseEntity<String> changeEmployeeStatus(@PathVariable String employeeId, @RequestParam boolean status) {
+        UUID uuid = UUID.fromString(employeeId);
+        if (employeeService.changeEmployeeStatus(uuid, status)) {
+            return new ResponseEntity<>("Employee status updated successfully", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Employee not found", HttpStatus.NOT_FOUND);
+    }
 }

@@ -17,6 +17,7 @@ public class GlobalExceptionHandler {
                 .build();
         return new ResponseEntity<>(apiError,apiError.getStatus());
     }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     private ResponseEntity<APIError> handleMethodArgsNotValid(MethodArgumentNotValidException e){
         APIError apiError = APIError.builder()
@@ -25,6 +26,7 @@ public class GlobalExceptionHandler {
                 .build();
         return new ResponseEntity<>(apiError,apiError.getStatus());
     }
+
     @ExceptionHandler(Exception.class)
     private ResponseEntity<APIError> handleAllOtherExceptions(Exception e) {
         APIError apiError = APIError.builder()

@@ -27,4 +27,6 @@ public class EmployeeEntity {
     private String address;
     private String designation;
     private int departmentNumber;
+    private boolean admin;
+    private boolean active;
 }

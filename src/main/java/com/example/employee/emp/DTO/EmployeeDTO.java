@@ -25,4 +25,6 @@ public class EmployeeDTO {
     private String designation;
     @NotNull(message = "Department Number is required")
     private int departmentNumber;
+    private boolean admin;
+    private boolean active;
 }
