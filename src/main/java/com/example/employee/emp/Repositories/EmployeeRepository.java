@@ -17,4 +17,6 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, UUID> 
     List<EmployeeEntity> findByDepartmentNumber(Integer department);
 
     List<EmployeeEntity> findByActiveTrue();
+
+    List<EmployeeEntity> findByActiveFalse();
 }

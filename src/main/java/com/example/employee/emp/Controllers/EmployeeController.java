@@ -84,4 +84,10 @@ public class EmployeeController {
         }
         return new ResponseEntity<>("Employee not found", HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/in-active")
+    public ResponseEntity<List<EmployeeDTO>> getInactiveEmployeesByStatus() {
+        List<EmployeeDTO> employees = employeeService.getInactiveEmployees();
+        return new ResponseEntity<>(employees, HttpStatus.OK);
+    }
 }

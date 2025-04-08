@@ -95,4 +95,9 @@ public class EmployeeService {
         }
         return false;
     }
+
+    public List<EmployeeDTO> getInactiveEmployees() {
+        List<EmployeeEntity> employees = employeeRepository.findByActiveFalse();
+        return employees.stream().map(employee -> modelMapper.map(employee, EmployeeDTO.class)).collect(Collectors.toList());
+    }
 }
